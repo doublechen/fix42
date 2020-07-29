@@ -417,7 +417,7 @@ func (m NoMDEntries) GetMDEntryID() (v string, err quickfix.MessageRejectError) 
 
 //GetValueDate gets ValueDate, Tag 9006
 func (m NoMDEntries) GetValueDate() (v string, err quickfix.MessageRejectError) {
-	var f field.ValueDate
+	var f field.ValueDateField
 	if err = m.Get(&f); err == nil {
 		v = f.Value()
 	}
