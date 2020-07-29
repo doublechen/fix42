@@ -5,10 +5,10 @@ import (
 
 	"github.com/shopspring/decimal"
 
+	"github.com/doublechen/field"
 	"github.com/doublechen/fix42"
 	"github.com/doublechen/tag"
 	"github.com/quickfixgo/enum"
-	"github.com/quickfixgo/field"
 	"github.com/quickfixgo/quickfix"
 )
 
@@ -409,6 +409,15 @@ func (m NoMDEntries) GetMDEntryType() (v enum.MDEntryType, err quickfix.MessageR
 //GetMDEntryID gets MDEntryID, Tag 278
 func (m NoMDEntries) GetMDEntryID() (v string, err quickfix.MessageRejectError) {
 	var f field.MDEntryIDField
+	if err = m.Get(&f); err == nil {
+		v = f.Value()
+	}
+	return
+}
+
+//GetValueDate gets ValueDate, Tag 9006
+func (m NoMDEntries) GetValueDate() (v string, err quickfix.MessageRejectError) {
+	var f field.ValueDate
 	if err = m.Get(&f); err == nil {
 		v = f.Value()
 	}
