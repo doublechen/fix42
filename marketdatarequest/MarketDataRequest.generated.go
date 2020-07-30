@@ -3,11 +3,11 @@ package marketdatarequest
 import (
 	"github.com/shopspring/decimal"
 
+	"github.com/doublechen/field"
+	"github.com/doublechen/fix42"
+	"github.com/doublechen/tag"
 	"github.com/quickfixgo/enum"
-	"github.com/quickfixgo/field"
-	"github.com/quickfixgo/fix42"
 	"github.com/quickfixgo/quickfix"
-	"github.com/quickfixgo/tag"
 )
 
 //MarketDataRequest is the fix42 MarketDataRequest type, MsgType = V
@@ -196,6 +196,16 @@ type NoRelatedSym struct {
 //SetSymbol sets Symbol, Tag 55
 func (m NoRelatedSym) SetSymbol(v string) {
 	m.Set(field.NewSymbol(v))
+}
+
+//SetTenor sets Tenor, Tag 9002
+func (m NoRelatedSym) SetTenor(v string) {
+	m.Set(field.NewTenor(v))
+}
+
+//SetOutrightAllInRate sets OutrightAllInRate, Tag 9010
+func (m NoRelatedSym) SetOutrightAllInRate(v string) {
+	m.Set(field.NewOutrightAllInRate(v))
 }
 
 //SetSymbolSfx sets SymbolSfx, Tag 65
