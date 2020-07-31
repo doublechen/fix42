@@ -424,6 +424,42 @@ func (m NoMDEntries) GetValueDate() (v string, err quickfix.MessageRejectError) 
 	return
 }
 
+//GetMarketMidRate gets MarketMidRate, Tag 9050
+func (m NoMDEntries) GetMarketMidRate() (v string, err quickfix.MessageRejectError) {
+	var f field.MarketMidRateField
+	if err = m.Get(&f); err == nil {
+		v = f.Value()
+	}
+	return
+}
+
+//GetFixingDate gets FixingDate, Tag 6203
+func (m NoMDEntries) GetFixingDate() (v string, err quickfix.MessageRejectError) {
+	var f field.FixingDateField
+	if err = m.Get(&f); err == nil {
+		v = f.Value()
+	}
+	return
+}
+
+//GetFixingSource gets FixingSource, Tag 6204
+func (m NoMDEntries) GetFixingSource() (v string, err quickfix.MessageRejectError) {
+	var f field.FixingSourceField
+	if err = m.Get(&f); err == nil {
+		v = f.Value()
+	}
+	return
+}
+
+//GetPipPlacement gets PipPlacement, Tag 9003
+func (m NoMDEntries) GetPipPlacement() (v string, err quickfix.MessageRejectError) {
+	var f field.PipPlacementField
+	if err = m.Get(&f); err == nil {
+		v = f.Value()
+	}
+	return
+}
+
 //GetMDEntryRefID gets MDEntryRefID, Tag 280
 func (m NoMDEntries) GetMDEntryRefID() (v string, err quickfix.MessageRejectError) {
 	var f field.MDEntryRefIDField
@@ -1181,7 +1217,63 @@ type NoMDEntriesRepeatingGroup struct {
 func NewNoMDEntriesRepeatingGroup() NoMDEntriesRepeatingGroup {
 	return NoMDEntriesRepeatingGroup{
 		quickfix.NewRepeatingGroup(tag.NoMDEntries,
-			quickfix.GroupTemplate{quickfix.GroupElement(tag.MDUpdateAction), quickfix.GroupElement(tag.DeleteReason), quickfix.GroupElement(tag.MDEntryType), quickfix.GroupElement(tag.MDEntryID), quickfix.GroupElement(tag.MDEntryRefID), quickfix.GroupElement(tag.Symbol), quickfix.GroupElement(tag.SymbolSfx), quickfix.GroupElement(tag.SecurityID), quickfix.GroupElement(tag.IDSource), quickfix.GroupElement(tag.SecurityType), quickfix.GroupElement(tag.MaturityMonthYear), quickfix.GroupElement(tag.MaturityDay), quickfix.GroupElement(tag.PutOrCall), quickfix.GroupElement(tag.StrikePrice), quickfix.GroupElement(tag.OptAttribute), quickfix.GroupElement(tag.ContractMultiplier), quickfix.GroupElement(tag.CouponRate), quickfix.GroupElement(tag.SecurityExchange), quickfix.GroupElement(tag.Issuer), quickfix.GroupElement(tag.EncodedIssuerLen), quickfix.GroupElement(tag.EncodedIssuer), quickfix.GroupElement(tag.SecurityDesc), quickfix.GroupElement(tag.EncodedSecurityDescLen), quickfix.GroupElement(tag.EncodedSecurityDesc), quickfix.GroupElement(tag.FinancialStatus), quickfix.GroupElement(tag.CorporateAction), quickfix.GroupElement(tag.MDEntryPx), quickfix.GroupElement(tag.Currency), quickfix.GroupElement(tag.MDEntrySize), quickfix.GroupElement(tag.MDEntryDate), quickfix.GroupElement(tag.MDEntryTime), quickfix.GroupElement(tag.TickDirection), quickfix.GroupElement(tag.MDMkt), quickfix.GroupElement(tag.TradingSessionID), quickfix.GroupElement(tag.QuoteCondition), quickfix.GroupElement(tag.TradeCondition), quickfix.GroupElement(tag.MDEntryOriginator), quickfix.GroupElement(tag.LocationID), quickfix.GroupElement(tag.DeskID), quickfix.GroupElement(tag.OpenCloseSettleFlag), quickfix.GroupElement(tag.TimeInForce), quickfix.GroupElement(tag.ExpireDate), quickfix.GroupElement(tag.ExpireTime), quickfix.GroupElement(tag.MinQty), quickfix.GroupElement(tag.ExecInst), quickfix.GroupElement(tag.SellerDays), quickfix.GroupElement(tag.OrderID), quickfix.GroupElement(tag.QuoteEntryID), quickfix.GroupElement(tag.MDEntryBuyer), quickfix.GroupElement(tag.MDEntrySeller), quickfix.GroupElement(tag.NumberOfOrders), quickfix.GroupElement(tag.MDEntryPositionNo), quickfix.GroupElement(tag.TotalVolumeTraded), quickfix.GroupElement(tag.Text), quickfix.GroupElement(tag.EncodedTextLen), quickfix.GroupElement(tag.EncodedText), quickfix.GroupElement(tag.ValueDate)})}
+			quickfix.GroupTemplate{quickfix.GroupElement(tag.MDUpdateAction),
+				quickfix.GroupElement(tag.DeleteReason),
+				quickfix.GroupElement(tag.MDEntryType),
+				quickfix.GroupElement(tag.MDEntryID),
+				quickfix.GroupElement(tag.MDEntryRefID),
+				quickfix.GroupElement(tag.Symbol),
+				quickfix.GroupElement(tag.SymbolSfx),
+				quickfix.GroupElement(tag.SecurityID),
+				quickfix.GroupElement(tag.IDSource),
+				quickfix.GroupElement(tag.SecurityType),
+				quickfix.GroupElement(tag.MaturityMonthYear),
+				quickfix.GroupElement(tag.MaturityDay),
+				quickfix.GroupElement(tag.PutOrCall),
+				quickfix.GroupElement(tag.StrikePrice),
+				quickfix.GroupElement(tag.OptAttribute),
+				quickfix.GroupElement(tag.ContractMultiplier),
+				quickfix.GroupElement(tag.CouponRate),
+				quickfix.GroupElement(tag.SecurityExchange),
+				quickfix.GroupElement(tag.Issuer),
+				quickfix.GroupElement(tag.EncodedIssuerLen),
+				quickfix.GroupElement(tag.EncodedIssuer),
+				quickfix.GroupElement(tag.SecurityDesc),
+				quickfix.GroupElement(tag.EncodedSecurityDescLen),
+				quickfix.GroupElement(tag.EncodedSecurityDesc),
+				quickfix.GroupElement(tag.FinancialStatus),
+				quickfix.GroupElement(tag.CorporateAction),
+				quickfix.GroupElement(tag.MDEntryPx),
+				quickfix.GroupElement(tag.Currency),
+				quickfix.GroupElement(tag.MDEntrySize),
+				quickfix.GroupElement(tag.MDEntryDate),
+				quickfix.GroupElement(tag.MDEntryTime),
+				quickfix.GroupElement(tag.TickDirection),
+				quickfix.GroupElement(tag.MDMkt),
+				quickfix.GroupElement(tag.TradingSessionID),
+				quickfix.GroupElement(tag.QuoteCondition),
+				quickfix.GroupElement(tag.TradeCondition),
+				quickfix.GroupElement(tag.MDEntryOriginator),
+				quickfix.GroupElement(tag.LocationID),
+				quickfix.GroupElement(tag.DeskID),
+				quickfix.GroupElement(tag.OpenCloseSettleFlag),
+				quickfix.GroupElement(tag.TimeInForce),
+				quickfix.GroupElement(tag.ExpireDate),
+				quickfix.GroupElement(tag.ExpireTime),
+				quickfix.GroupElement(tag.MinQty),
+				quickfix.GroupElement(tag.ExecInst),
+				quickfix.GroupElement(tag.SellerDays),
+				quickfix.GroupElement(tag.OrderID),
+				quickfix.GroupElement(tag.QuoteEntryID),
+				quickfix.GroupElement(tag.MDEntryBuyer),
+				quickfix.GroupElement(tag.MDEntrySeller),
+				quickfix.GroupElement(tag.NumberOfOrders),
+				quickfix.GroupElement(tag.MDEntryPositionNo),
+				quickfix.GroupElement(tag.TotalVolumeTraded),
+				quickfix.GroupElement(tag.Text),
+				quickfix.GroupElement(tag.EncodedTextLen),
+				quickfix.GroupElement(tag.EncodedText),
+				quickfix.GroupElement(tag.ValueDate)})}
 }
 
 //Add create and append a new NoMDEntries to this group
