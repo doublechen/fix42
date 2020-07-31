@@ -1217,7 +1217,8 @@ type NoMDEntriesRepeatingGroup struct {
 func NewNoMDEntriesRepeatingGroup() NoMDEntriesRepeatingGroup {
 	return NoMDEntriesRepeatingGroup{
 		quickfix.NewRepeatingGroup(tag.NoMDEntries,
-			quickfix.GroupTemplate{quickfix.GroupElement(tag.MDUpdateAction),
+			quickfix.GroupTemplate{
+				quickfix.GroupElement(tag.MDUpdateAction),
 				quickfix.GroupElement(tag.DeleteReason),
 				quickfix.GroupElement(tag.MDEntryType),
 				quickfix.GroupElement(tag.MDEntryID),
@@ -1273,7 +1274,12 @@ func NewNoMDEntriesRepeatingGroup() NoMDEntriesRepeatingGroup {
 				quickfix.GroupElement(tag.Text),
 				quickfix.GroupElement(tag.EncodedTextLen),
 				quickfix.GroupElement(tag.EncodedText),
-				quickfix.GroupElement(tag.ValueDate)})}
+				quickfix.GroupElement(tag.ValueDate)}),
+				quickfix.GroupElement(tag.MarketMidRate)}),
+				quickfix.GroupElement(tag.FixingDate)}),
+				quickfix.GroupElement(tag.FixingSource)}),
+				quickfix.GroupElement(tag.PipPlacement)})
+			}
 }
 
 //Add create and append a new NoMDEntries to this group
