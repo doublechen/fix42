@@ -1,14 +1,15 @@
 package newordersingle
 
 import (
-	"github.com/shopspring/decimal"
 	"time"
 
+	"github.com/shopspring/decimal"
+
+	"github.com/doublechen/field"
+	"github.com/doublechen/fix42"
+	"github.com/doublechen/tag"
 	"github.com/quickfixgo/enum"
-	"github.com/quickfixgo/field"
-	"github.com/quickfixgo/fix42"
 	"github.com/quickfixgo/quickfix"
-	"github.com/quickfixgo/tag"
 )
 
 //NewOrderSingle is the fix42 NewOrderSingle type, MsgType = D
